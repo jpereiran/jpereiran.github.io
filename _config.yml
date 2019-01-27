@@ -1,1 +1,31 @@
-theme: jekyll-theme-minimal
+name: Herring Cove
+author: Herring Cove
+baseurl: /herring-cove
+description: theme for jekyll
+github: http://www.github.com/jpereiran
+twitter: http://www.twitter.com/
+facebook: http://www.facebook.com
+linkedin: http://www.linkedin.com
+email: jpereira[at]pucp.edu.pe
+location: 42°2'16"N   70°12'47"W
+disqus:
+
+##Make sure to edit the above fields, especially for disqus.
+
+
+highlighter: pygments
+markdown: redcarpet
+redcarpet:
+  extensions: ["tables"]
+
+defaults:
+  - scope:
+      path: ""
+      type: "pages"
+    values:
+      layout: "default"
+  - scope:
+      path: ""
+      type: "posts"
+    values:
+      layout: "post"
