@@ -1,7 +1,7 @@
 ---
 title: What is this, anyway?
 date: 2019-06-10 19:55:16
-categories: jekyll testing
+categories: info
 ---
 
 
