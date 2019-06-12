@@ -1,5 +1,5 @@
 ---
-title:  "Automating Excel tasks using Python for Windows Extensions (pywin32)"
+title:  "Automating Excel tasks with Pywin32"
 date:   2019-06-12 20:45:16
 categories: code
 ---
