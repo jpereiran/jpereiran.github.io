@@ -26,7 +26,7 @@ With the use of this technology, pywin32 allows us to interact with COM objects 
 
 First, be sure that you have pywin32 installed in your computer. If not, you can easilly install it using pip:
 
-``` python
+```python
 pip install pywin32
 ``` 
 
@@ -58,7 +58,7 @@ Once we opened a file, we are able to manipulate it and get all of its data to w
 
 Then, to extract the data of the Excel file and manipulate it to save it into a more readable format, we need to access each of the cells. In this case, since I have a predefined format, I will go directly into those cells and use a .txt file to put a summary of all the worksheets I need.
 
-``` python
+```python
 import win32com.client
 import sys, io
 
@@ -110,7 +110,7 @@ With this little code we are able to get all the desired data and write it into 
 
 Then, I need to go through all the files of each student and make the summary and the grading template. For this, I will place all the files in a folder and then repeat the previous process for each one. Also, we need to create a new file for the grading template and write the path of each student file.
 
-``` python
+```python
 import win32com.client
 import glob
 import sys, io
