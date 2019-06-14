@@ -1,10 +1,10 @@
 ---
 title:  "Automating Excel tasks with Pywin32"
-date:   2019-06-12 20:45:16
+date:   2019-06-13 20:45:16
 categories: articles
 ---
 
-Besides my regular job, I'm also a teaching assistant of the strategic planning course at my university. Here, to evaluate the students, we give them a business scenario and an Excel file with a set of questions in a predefined template.
+Besides my regular job, I'm also a teaching assistant at the strategic planning course in my university. There, to evaluate the students, we give them a business scenario and an Excel file with a set of questions in a predefined template.
 
 Image example 1
 
@@ -26,15 +26,15 @@ With the use of this technology, pywin32 allows us to interact with COM objects 
 
 First, be sure that you have pywin32 installed in your computer. If not, you can easilly install it using pip:
 
-{% highlight pyhon %}
+``` python
 pip install pywin32
-{% endhighlight %}
+``` 
 
 ### Opening a file
 
 In order to get the data from the Excel files, we need to open them. To do this, we need to activate the application and then make it open a file in a desired path:
 
-{% highlight pyhon %}
+``` python
 import win32com.client
 
 # Open up Excel and make it visible
@@ -48,17 +48,17 @@ workbook = excel.Workbooks.Open(file)
 # Wait before closing it
 _ = input("Press enter to close Excel")
 excel.Quit()
-{% endhighlight %}
+```
 
 Image example 2
 
-Once we opened our file, we are able to manipulate it and get all of its data to write it into our report with the answers of all the students.
+Once we opened a file, we are able to manipulate it and get all of its data to write it into our answers report.
 
 ### Extracting the data
 
-Then, I need to extract some of the cells of the Excel file and manipulate them to save it into a more readable format. In this case, I'll use a .txt file where I will put the summary of all the worksheets.
+Then, to extract the data of the Excel file and manipulate it to save it into a more readable format, we need to access each of the cells. In this case, since I have a predefined format, I will go directly into those cells and use a .txt file to put a summary of all the worksheets I need.
 
-{% highlight pyhon %}
+``` python
 import win32com.client
 import sys, io
 
@@ -100,17 +100,17 @@ wb_data.Close(True)
 sys.stdout = orig_stdout
 bk.close()
 excel.Quit()
-{% endhighlight %}
+```
 
 Image example 
 
-With this little code we are able to get the data to write it into our report with the answers of all the students.
+With this little code we are able to get all the desired data and write it into a .txt report with the answers of a student.
 
 ### Repeating the process for multiple files
 
-Then, I need to go through all the files of each student and make the summary and the grading template. For this, I'll place all the files in a folder and then repeat the previous process for each one.
+Then, I need to go through all the files of each student and make the summary and the grading template. For this, I will place all the files in a folder and then repeat the previous process for each one. Also, we need to create a new file for the grading template and write the path of each student file.
 
-{% highlight pyhon %}
+``` python
 import win32com.client
 import glob
 import sys, io
@@ -120,7 +120,7 @@ excel = win32com.client.Dispatch('Excel.Application')
 excel.Visible = True
 
 # Select the path of the folder with all the files
-files = glob.glob("D:/Users/josepereiran/Desktop/Lab3/LabPrevio/H-0982/*.xlsx")
+files = glob.glob("folder_path/*.xlsx")
 
 # Redirect the stdout to a file
 orig_stdout = sys.stdout
@@ -140,7 +140,7 @@ for file in files:
 	print("Vision:" ,vision)
 	print()
 
-  # Get the answers to the Q2A
+  # Get the answers to the Q1B
 	oe1=wb_data.Worksheets("1ayb_MisiónyVisiónFutura").Range("C14")
 	ju1=wb_data.Worksheets("1ayb_MisiónyVisiónFutura").Range("D14")
 	oe2=wb_data.Worksheets("1ayb_MisiónyVisiónFutura").Range("C15")
@@ -153,33 +153,34 @@ for file in files:
   # Get the answers to the Q2A
 	mision=wb_data.Worksheets("2a_MisionyVisionSI").Range("C6")
 	vision=wb_data.Worksheets("2a_MisionyVisionSI").Range("C7")
-	print("PREGUNTA 2A")
-	print("Misión SI:",mision)
-	print("Visión SI:",vision)
+	print("Question 2A")
+	print("Mission SI:",mision)
+	print("Vision SI:",vision)
 	print()
   
   # Get the answers to the Q3A
-	print("PREGUNTA 3A")
+	print("Question 3A")
 	for i in range(5,13): 
 		proy=wb_data.Worksheets("3a_ProySI").Range("B"+str(i))
 		desc=wb_data.Worksheets("3a_ProySI").Range("D"+str(i))
 		mcfr=wb_data.Worksheets("3a_ProySI").Range("E"+str(i))
 		tipo=wb_data.Worksheets("3a_ProySI").Range("F"+str(i))	
-		print("\tProyecto:",proy)
-		print("\tDescripción:",desc)
+		print("\tProyect:",proy)
+		print("\tDesc:",desc)
 		print("\tMacFarlan:",mcfr,"- Tipo",tipo)
 		print()
     
   # Close the file without saving
 	wb_data.Close(True)
 
-# Closing Excel and restoring the stdout
+# Restoring the stdout
 sys.stdout = orig_stdout
 bk.close()
 
+# Create a new Excel file for the grading template
 wb_template = excel.Workbooks.Add()
 
-# Headers
+# Headers of the template
 wb_template.Worksheets(1).Range("A1").Value = 'File'
 wb_template.Worksheets(1).Range("B1").Value = 'Q1A'
 wb_template.Worksheets(1).Range("C1").Value = 'C1A'
@@ -187,20 +188,24 @@ wb_template.Worksheets(1).Range("D1").Value = 'Q1B'
 wb_template.Worksheets(1).Range("E1").Value = 'C1A'
 wb_template.Worksheets(1).Range("F1").Value = 'Q2A'
 wb_template.Worksheets(1).Range("G1").Value = 'C2A'
+wb_template.Worksheets(1).Range("H1").Value = 'Q3A'
+wb_template.Worksheets(1).Range("I1").Value = 'C3A'
 
-for idx, arch in enumerate(archivos):
+# Add the path of each file into the template
+for idx, arch in enumerate(files):
 	wb_template.Worksheets(1).Range("A"+str(idx+2)).Value = arch.replace('\\','/')	
 
-# Add full path, otherwise it will save in My Documents
+# Save the grading template without alerts
 excel.DisplayAlerts = False
-wb_template.SaveAs(r'd:\Users\josepereiran\Desktop\Grades_Template.xlsx')
+wb_template.SaveAs(r'folder_path\Grades_Template.xlsx')
+
+# Close the file and the program
 wb_template.Close()
 excel.DisplayAlerts = True
 excel.Quit()
+```
 
-{% endhighlight %}
-
-Finally, I'm able to get the summary of all the files in a little .txt and a template for grading each of the students
+Finally, with this I'm able to get the summary of all the files in a little .txt and a template for grading each of the students
 
 Image example 3
 
@@ -208,6 +213,6 @@ Image example 3
 My preference is to try to stick with python as much as possible for my day-to-day data analysis. However, it is important to know when other technologies can streamline the process or make the results have a bigger impact. Microsoft’s COM technology is a mature technology and can be used effectively through python to do tasks that might be too difficult to do otherwise. Hopefully this article has given you some ideas on how to incorporate this technique into your own workflow.
 
 ### Next steps
-With this example, I showed you how to open an set of Excel files with the same structure form a folder and extract all of its data into a .txt report and into an Excel template to grade the different questions in each of the files.
+With this example, I showed you how to open an set of Excel files with the same structure from a folder and extract all of its data into a .txt report. Also, how to create a new Excel file and add data to it to create a template to grade the different questions in each of the files.
 
-In the next tutorial, I'll show you how to read template file with the grades and place them and the comments in each of the student files to avoid the work of opening each individual file and working directly in them.
+In the next tutorial, I'll show you how to read the template file with the grades and put its data into each of the student files to avoid the work of opening each individual file and working directly in them.
