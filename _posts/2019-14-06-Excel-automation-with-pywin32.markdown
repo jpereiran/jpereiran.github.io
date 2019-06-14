@@ -6,7 +6,9 @@ categories: articles
 
 Besides my regular job, I'm also a teaching assistant at the strategic planning course in my university. There, to evaluate the students, we give them a business scenario and an Excel file with a set of questions in a predefined template.
 
-Image example 1
+![Example of the template we use]("{{ site.baseurl }}/images/chanot_main_screen.png"){:class="img-responsive"}
+
+<img src="{{ site.baseurl }}/images/chanot_main_screen.png">
 
 However, grading these files is really a hassle because you have to open one by one, adjust the zoom level and the size of the cells for a proper reading (even some students use LibreOffice and when you open the files in Excel the format goes all wonky). 
 
