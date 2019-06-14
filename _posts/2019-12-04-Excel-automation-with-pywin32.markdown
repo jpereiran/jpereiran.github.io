@@ -56,6 +56,59 @@ Once we opened our file, we are able to manipulate it and get all of its data to
 
 ### Extracting the data
 
+Then, I need to extract some of the cells of the Excel file and manipulate them to save it into a more readable format. In this case, I'll use a .txt file where I will put the summary of all the worksheets.
+
+{% highlight pyhon %}
+import win32com.client
+import sys, io
+
+# Open up Excel and make it visible (actually you don't need to make it visible)
+excel = win32com.client.Dispatch('Excel.Application')
+excel.Visible = True
+
+# Redirect the stdout to a file
+orig_stdout = sys.stdout
+bk = io.open("Answers_Report.txt", mode="w", encoding="utf-8")
+sys.stdout = bk
+
+# Select a file and open it
+file = "path_of_file"
+wb_data = excel.Workbooks.Open(file)
+  
+# Get the answers to the Q1A and write them into the summary file
+mission=wb_data.Worksheets("1ayb_MisiónyVisiónFutura").Range("C6")
+vision =wb_data.Worksheets("1ayb_MisiónyVisiónFutura").Range("C7")
+print("Question 1A")
+print("Mission:",mission)
+print("Vision:" ,vision)
+print()
+
+# Get the answers to the Q1B and write them into the summary file
+oe1=wb_data.Worksheets("1ayb_MisiónyVisiónFutura").Range("C14")
+ju1=wb_data.Worksheets("1ayb_MisiónyVisiónFutura").Range("D14")
+oe2=wb_data.Worksheets("1ayb_MisiónyVisiónFutura").Range("C15")
+ju2=wb_data.Worksheets("1ayb_MisiónyVisiónFutura").Range("D15")
+print("Question 1B")
+print("OEN1:",oe1, "- JUSTIF:",ju1)
+print("OEN2:",oe2, "- JUSTIF:",ju2)
+print()
+    
+# Close the file without saving
+wb_data.Close(True)
+
+# Closing Excel and restoring the stdout
+sys.stdout = orig_stdout
+bk.close()
+excel.Quit()
+{% endhighlight %}
+
+Image example 
+
+With this little code we are able to get the data to write it into our report with the answers of all the students.
+
+### Repeating the process for multiple files
+
+Then, I need to go through all the files of each student and make the summary and the grading template. For this, I'll place all the files in a folder and then repeat the previous process for each one.
 
 {% highlight pyhon %}
 import win32com.client
@@ -123,10 +176,31 @@ for file in files:
 # Closing Excel and restoring the stdout
 sys.stdout = orig_stdout
 bk.close()
+
+wb_template = excel.Workbooks.Add()
+
+# Headers
+wb_template.Worksheets(1).Range("A1").Value = 'File'
+wb_template.Worksheets(1).Range("B1").Value = 'Q1A'
+wb_template.Worksheets(1).Range("C1").Value = 'C1A'
+wb_template.Worksheets(1).Range("D1").Value = 'Q1B'
+wb_template.Worksheets(1).Range("E1").Value = 'C1A'
+wb_template.Worksheets(1).Range("F1").Value = 'Q2A'
+wb_template.Worksheets(1).Range("G1").Value = 'C2A'
+
+for idx, arch in enumerate(archivos):
+	wb_template.Worksheets(1).Range("A"+str(idx+2)).Value = arch.replace('\\','/')	
+
+# Add full path, otherwise it will save in My Documents
+excel.DisplayAlerts = False
+wb_template.SaveAs(r'd:\Users\josepereiran\Desktop\Grades_Template.xlsx')
+wb_template.Close()
+excel.DisplayAlerts = True
 excel.Quit()
+
 {% endhighlight %}
 
-
+Finally, I'm able to get the summary of all the files in a little .txt and a template for grading each of the students
 
 Image example 3
 
@@ -136,4 +210,4 @@ My preference is to try to stick with python as much as possible for my day-to-d
 ### Next steps
 With this example, I showed you how to open an set of Excel files with the same structure form a folder and extract all of its data into a .txt report and into an Excel template to grade the different questions in each of the files.
 
-In the next tutorial, I'll show you how to read this file with the grades and place them and the comments in each of the student files to avoid the work of opening each individual file and working directly in them.
+In the next tutorial, I'll show you how to read template file with the grades and place them and the comments in each of the student files to avoid the work of opening each individual file and working directly in them.
