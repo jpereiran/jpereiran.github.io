@@ -1,6 +1,6 @@
 ---
 title:  "Automating Excel tasks with Pywin32"
-date:   2019-06-13 20:45:16
+date:   2019-06-14 20:45:16
 categories: articles
 ---
 
@@ -16,7 +16,7 @@ In order to reduce all this process of grading files, I decided that I'll use Py
 
 Python has many options for working with Excel files (pandas, openpyxL, xlsxwriter, etc). However, there is another option to work directly with the functionalites of Windows OS programs called “Python for Windows Extensions” also known as pywin32. With this package, you can easily access Window’s Component Object Model (COM) and control Microsoft applications via python. 
 
-#### What is COM?
+##### What is COM?
 
 The Microsoft Component Object Model (COM) is a platform-independent, distributed, object-oriented system for creating binary software components that can interact. COM is the foundation technology for Microsoft's OLE (compound documents), ActiveX (Internet-enabled components), as well as others that allows us to control Windows applications from another program.
 
@@ -210,7 +210,7 @@ Finally, with this I'm able to get the summary of all the files in a little .txt
 Image example 3
 
 ### Conclusion
-My preference is to try to stick with python as much as possible for my day-to-day data analysis. However, it is important to know when other technologies can streamline the process or make the results have a bigger impact. Microsoft’s COM technology is a mature technology and can be used effectively through python to do tasks that might be too difficult to do otherwise. Hopefully this article has given you some ideas on how to incorporate this technique into your own workflow.
+Whenever someone wants to work with Excel files in python, most tutorials and websites suggest the use of pandas, opepyxl or xlsxwriter packages. However, it is important to know that there are other options availabe that can help you with more functionalities. Microsoft’s COM technology is an option that can be used effectively through python to do tasks that might be too difficult to do otherwise and not limitting its use to only Excel. Hopefully this example can give you some inspiration on how to incorporate this library into your work.
 
 ### Next steps
 With this example, I showed you how to open an set of Excel files with the same structure from a folder and extract all of its data into a .txt report. Also, how to create a new Excel file and add data to it to create a template to grade the different questions in each of the files.
