@@ -6,9 +6,7 @@ categories: articles
 
 Besides my regular job, I'm also a teaching assistant at the strategic planning course in my university. There, to evaluate the students, we give them a business scenario and an Excel file with a set of questions in a predefined template.
 
-![Example of the template we use]("{{ site.baseurl }}/images/chanot_main_screen.png"){:class="img-responsive"}
-
-<img src="{{ site.baseurl }}/images/chanot_main_screen.png">
+<img src="{{ site.baseurl }}/images/posts/pywin32/2019_06_14_1.JPG" title="Example of the template we use">
 
 However, grading these files is really a hassle because you have to open one by one, adjust the zoom level and the size of the cells for a proper reading (even some students use LibreOffice and when you open the files in Excel the format goes all wonky). 
 
@@ -51,9 +49,6 @@ workbook = excel.Workbooks.Open(file)
 _ = input("Press enter to close Excel")
 excel.Quit()
 ```
-
-Image example 2
-
 Once we opened a file, we are able to manipulate it and get all of its data to write it into our answers report.
 
 ### Extracting the data
@@ -103,9 +98,6 @@ sys.stdout = orig_stdout
 bk.close()
 excel.Quit()
 ```
-
-Image example 
-
 With this little code we are able to get all the desired data and write it into a .txt report with the answers of a student.
 
 ### Repeating the process for multiple files
@@ -206,10 +198,13 @@ wb_template.Close()
 excel.DisplayAlerts = True
 excel.Quit()
 ```
+Finally, with this I'm able to get the summary of all the files in a little .txt
 
-Finally, with this I'm able to get the summary of all the files in a little .txt and a template for grading each of the students
+<img src="{{ site.baseurl }}/images/posts/pywin32/2019_06_14_2.JPG" title="Summary">
 
-Image example 3
+And a template for grading each of the students with the path to each of the files
+
+<img src="{{ site.baseurl }}/images/posts/pywin32/2019_06_14_3.JPG" title="Summary">
 
 ### Conclusion
 Whenever someone wants to work with Excel files in python, most tutorials and websites suggest the use of pandas, opepyxl or xlsxwriter packages. However, it is important to know that there are other options availabe that can help you with more functionalities. Microsoft’s COM technology is an option that can be used effectively through python to do tasks that might be too difficult to do otherwise and not limitting its use to only Excel. Hopefully this example can give you some inspiration on how to incorporate this library into your work.
