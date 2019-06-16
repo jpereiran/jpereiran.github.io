@@ -206,6 +206,8 @@ And a template for grading each of the students with the path to each of the fil
 
 <img src="{{ site.baseurl }}/images/posts/pywin32/2019_06_14_3.JPG" title="Grading Template">
 
+The full code with some of the Excel files used for the example can be found in the [blog's github](https://github.com/jpereiran/jpereiran-blog/tree/master/code/pywin32/excel).
+
 ### Conclusion
 Whenever someone wants to work with Excel files in python, most tutorials and websites suggest the use of pandas, opepyxl or xlsxwriter packages. However, it is important to know that there are other options availabe that can help you with more functionalities. Microsoft’s COM technology is an option that can be used effectively through python to do tasks that might be too difficult to do otherwise and not limitting its use to only Excel. Hopefully this example can give you some inspiration on how to incorporate this library into your work.
 
