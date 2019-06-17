@@ -77,6 +77,12 @@ p
   text-decoration:none
 }
 
+.container-2 a
+{
+  border-bottom:1px #8a8a8a dotted;
+  text-decoration:none
+}
+
 #wrapper
 {
   padding-left:250px;
