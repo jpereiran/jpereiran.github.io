@@ -6,7 +6,7 @@ title: Jose Pereira
 {% if site.posts != empty %}
 <div class="recent-posts">
   <h1>Recent Posts</h1>
-  {% for post in site.posts limit: 3 %}
+  {% for post in site.posts limit: 5 %}
     {% if forloop.first %}
       {% assign add_class = 'most-recent' %}
       {% capture fresh_tag %}
@@ -18,7 +18,7 @@ title: Jose Pereira
         <span>
           <h4>
             <a href="{{ site.baseurl }}{{ post.url }}">
-              {{ post.title }}
+             {{ post.categories }}-{{ post.title }}
             </a>
             {{ fresh_tag }}
             <time class="pull-right">
