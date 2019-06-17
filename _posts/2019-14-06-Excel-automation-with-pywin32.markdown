@@ -2,6 +2,7 @@
 title:  "Automating Excel tasks with Pywin32"
 date:   2019-06-14 20:45:16
 categories: articles
+abstract: Besides my regular job, I'm also a teaching assistant at my university. There we use Excel files to evalueate the students. However, grading these files is really a hassle [...]
 ---
 
 Besides my regular job, I'm also a teaching assistant at the strategic planning course in my university. There, to evaluate the students, we give them a business scenario and an Excel file with a set of questions in a predefined template.
