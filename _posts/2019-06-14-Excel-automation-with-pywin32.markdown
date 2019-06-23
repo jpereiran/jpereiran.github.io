@@ -23,7 +23,7 @@ The Microsoft Component Object Model (COM) is a platform-independent, distribute
 
 With the use of this technology, pywin32 allows us to interact with COM objects and do almost anything that a Microsoft Application can do with some python code.
 
-### Getting Started
+### Getting started
 
 First, be sure that you have pywin32 installed in your computer. If not, you can easilly install it using pip:
 
