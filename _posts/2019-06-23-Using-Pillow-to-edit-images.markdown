@@ -78,7 +78,7 @@ img = img.transpose(Image.FLIP_TOP_BOTTOM)
 img.thumbnail((50, 50)) 
 img.show()
 ```
-With this functions we are able to get the original size of our image and rotate, mirror and resize it.
+With these functions we are able to get the original size of our image and rotate, mirror and resize it.
 
 ### Effects and Filters
 
@@ -125,6 +125,11 @@ sharp_image.show()
 det_image = im.filter(ImageFilter.DETAIL)
 det_image.show()
 ```
+And here it is how the results of each example look like:
+
+<img src="{{ site.baseurl }}/images/posts/pillow/2019_06_23_2.jpg" title="Test image opened">
+
+Oredered from left to right and top to bottom, the first one is the inverted and the last is the one with the detail filter.
 
 ### Cropping the transparent parts of a PNG
 
