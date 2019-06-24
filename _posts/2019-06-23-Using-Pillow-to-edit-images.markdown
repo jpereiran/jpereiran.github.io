@@ -2,10 +2,10 @@
 title:  "Using Pillow to edit images"
 date:   2019-06-23 20:15:16
 categories: articles
-abstract: sth sth [...]
+abstract: Have you ever run into a problem or task where you needed to quickly edit a lot of images? Well, with the help of Python and the library Pillow [...]
 ---
 
-Have you ever run into a problem or task where you needed to quickly edit a lot of images? Well, with the help of Python and the library Pillow you can actually manipulate images in a easy and fast way.
+Have you ever run into a problem or task where you needed to quickly edit a lot of images? Well, since where I work sometimes we need to do some editting on images, I found that with the help of Python and the library Pillow you can actually manipulate images in a easy and fast way.
 
 ### Introduction
 
@@ -13,7 +13,7 @@ Python Imaging Library (PIL) is a free library that allows the manipulation of i
 
 However, since the library supports only up to version 2.7 of Python, Alex Clark in collaboration with other programmers has developed Pillow, a friendly fork of PIL which aims to maintain a stable library that adapts to new technologies and have Python 3.x support.
 
-### Getting Started
+### Getting started
 
 First, be sure that you have Pillow installed in your computer. If not, you can easilly install it using pip:
 
@@ -161,6 +161,8 @@ cropped.save("cropped_image.png")
 The full code and images used in these examples can be found in the [blog's github](https://github.com/jpereiran/jpereiran-blog/tree/master/code/pillow).
 
 ### Conclusion
-Whenever someone wants to work with Excel files in python, most tutorials and websites suggest the use of pandas, opepyxl or xlsxwriter packages. However, it is important to know that there are other options availabe that can help you with more functionalities. Microsoft’s COM technology is an option that can be used effectively through python to do tasks that might be too difficult to do otherwise and not limitting its use to only Excel. Hopefully this example can give you some inspiration on how to incorporate this library into your work.
+If you ever need to work with different images in Python and manipulate its attributes, among the different options that Python gives you, in my opinion Pillow is the answer due to its simplicity. However, there are other options like OpenCV or even Numpy and Scipy that can also achieve some of the functions that Pillow gives you but these libraries are more focused on other functionalities and other kind of tasks. 
+
+Hopefully these examples can show you how to use this library to speed up your work and as an inspiration to achieve different results without doing all the manual work that is commonly used when working with images.
 
 The full documentation and a more complete tutorial of the library can be found in [https://pillow.readthedocs.io/en/stable/index.html](https://pillow.readthedocs.io/en/stable/index.html)
