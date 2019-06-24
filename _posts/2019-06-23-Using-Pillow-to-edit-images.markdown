@@ -39,6 +39,8 @@ im.save("test_image.png")
 ```
 Once we opened our image, we are able to retrieve its attributes and to work with it.
 
+<img src="{{ site.baseurl }}/images/posts/pillow/2019_06_23_1.png" title="Test image opened">
+
 ### Basic functions (Size, Rotate, Resize, Transpose, Thumbnail)
 
 Then, we can get the size of our image and work with it to change its size, do different rotations and mirrorings on the image or even make a thumbnail of it.
