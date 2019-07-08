@@ -36,17 +36,17 @@ The first step to do web scraping is to know how the website you want to scrape 
 
 In this case, we are going to be working on [falabella's website](https://www.falabella.com.pe/falabella-pe/)
 
-<img src="{{ site.baseurl }}/images/posts/requests/2019_06_14_1.JPG" title="Falabella's website">
+<img src="{{ site.baseurl }}/images/posts/requests/2019_07_07_1.JPG" title="Falabella's website">
 
 And to be more specific, we will be working with the search bar:
 
-<img src="{{ site.baseurl }}/images/posts/requests/2019_06_14_2.JPG" title="Search bar">
+<img src="{{ site.baseurl }}/images/posts/requests/2019_07_07_2.JPG" title="Search bar">
 
 #### What we know
 
 Thanks to my friend, I already know that we can search a product with its SKU number in the search bar and look up to ten at the same time. However, since we want to make this process for a bigger amount of products, we will analyze what is the behavior when we search only one.
 
-When we find a product we get an URL with a pattern like https://www.falabella.com.pe/falabella-pe/product/sku/name/sku and the resultant product with its image and its description in the resultatn HTML. When the product its not published yet we get an URL like https://www.falabella.com.pe/falabella-pe/noSearchResult?Ntt=sku and an HTML with a message that tell us that we got no result for our search.
+When we find a product we get an URL with a pattern like https\://www\.falabella\.com\.pe/falabella-pe/product/sku/name/sku and the resultant product with its image and its description in the resultatn HTML. When the product its not published yet we get an URL like https://www.falabella.com.pe/falabella-pe/noSearchResult?Ntt=sku and an HTML with a message that tell us that we got no result for our search.
 
 With this information, we already see a pattern of what happen when we look for a product.
 
@@ -54,7 +54,7 @@ With this information, we already see a pattern of what happen when we look for 
 
 Now that we know what happen when we search for a product, we need to know what its the process behind this search. In order to do that, we will use the developer tools of Chrome and see what are the requests made to the website in the Network tag [(More details here)](https://developers.google.com/web/tools/chrome-devtools/network/).
 
-<img src="{{ site.baseurl }}/images/posts/requests/2019_06_14_3.JPG" title="Chrome's developer tools"> 
+<img src="{{ site.baseurl }}/images/posts/requests/2019_07_07_3.JPG" title="Chrome's developer tools"> 
 
 With this, we see that the search is made by calling the following URL: https://www.falabella.com.pe/falabella-pe/search/?Ntt=sku
 
