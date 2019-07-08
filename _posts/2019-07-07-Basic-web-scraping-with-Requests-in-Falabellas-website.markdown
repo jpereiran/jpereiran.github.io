@@ -2,7 +2,7 @@
 title:  "Basic web scraping with Requests in Falabella's website"
 date:   2019-07-07 21:45:16
 categories: articles
-abstract: sth sth [...]
+abstract: The other day my friend told me that he needs to check in a website the information of some products. However, doing this take him a lot of time since it is a manual task [...]
 ---
 
 The other day I was talking to my friend about his job. While he was explaining me the actvities he do, he told me that one of them is usually going into the company's website and check if the products are already there.
