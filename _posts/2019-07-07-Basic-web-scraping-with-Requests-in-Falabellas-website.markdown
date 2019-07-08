@@ -1,22 +1,21 @@
 ---
 title:  "Basic web scraping with Requests in Falabella's website"
 date:   2019-07-07 21:45:16
-categories: articles, web-scraping
+categories: articles
 abstract: sth sth [...]
 ---
 
 The other day I was talking to my friend about his job. While he was explaining me the actvities he do, he told me that one of them is usually going into the company's website and check if the products are already there.
 
-However, you can only search the information of 10 products at the same time so the process its really slow when you need to check the information many products.
+However, you can only search the information of ten products at the same time so the process its really slow when you need to check the information many products.
 
 Well, with the help of Python and the library Requests you can actually get all the information needed without even going to the website and having to worry about its limits with a technique called **web scraping**.
 
 ### Introduction
 
+Web scraping is a technique of capturing the data from the web into our local machine in an automated way in order to perform certain data analysis to get useful insights from that website. It involves fetching (also known as retriving or downloading) a web page and then extractimg information from its HTML code to take something out of it and use it for another purpose. 
 
-Web scraping is a technique of capturing the data from the web into our local machine in an automated way in order to perform certain data analysis to get useful insights from that website. It involves fetching (also known as retriving or downloading) a web page and then extractimg information from its HTML code to take something out of it and use it for another purpose somewhere else. 
-
-Since most of the websites use HTML and follow the same structure of HEAD + BODY, and change from URLs using GET and POST requests, the process of web scraping can be replicated amog then. 
+Since most of the websites use HTML and follow the same structure of HEAD + BODY, and change from URLs using GET and POST requests, the process of web scraping can be replicated among then. 
 
 Requests is a Python library that allows you to send HTTP/1.1 requests using Python. With it, you can add content like headers, form data, multipart files, and parameters to your requests and also access the response data. It abstracts the complexities of making requests behind a simple API so that you can focus on interacting with services and consuming data in your application.
 
@@ -46,7 +45,7 @@ And to be more specific, we will be working with the search bar:
 
 Thanks to my friend, I already know that we can search a product with its SKU number in the search bar and look up to ten at the same time. However, since we want to make this process for a bigger amount of products, we will analyze what is the behavior when we search only one.
 
-When we find a product we get an URL with a pattern like https\://www\.falabella\.com\.pe/falabella-pe/product/sku/name/sku and the resultant product with its image and its description in the resultatn HTML. When the product its not published yet we get an URL like https://www.falabella.com.pe/falabella-pe/noSearchResult?Ntt=sku and an HTML with a message that tell us that we got no result for our search.
+When we find a product we get an URL with a pattern like https<span></span>://www.falabella.com.pe/falabella-pe/product/sku/name/sku and the resultant product with its image and its description in the resultatn HTML. When the product its not published yet we get an URL like https://www.falabella.com.pe/falabella-pe/noSearchResult?Ntt=sku and an HTML with a message that tell us that we got no result for our search.
 
 With this information, we already see a pattern of what happen when we look for a product.
 
