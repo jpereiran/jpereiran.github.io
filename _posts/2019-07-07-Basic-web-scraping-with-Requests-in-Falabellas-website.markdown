@@ -23,7 +23,7 @@ This library let you use the main types of requests: get, post, put, delete, hea
 
 ### Getting started
 
-First, be sure that you have Requests installed in your computer. If not, you can easilly install them using pip:
+First, be sure that you have Requests installed in your computer. If not, you can easilly install it using pip:
 
 ```python
 pip install requests
@@ -39,13 +39,13 @@ In this case, we are going to be working on [falabella's website](https://www.fa
 
 And to be more specific, we will be working with the search bar:
 
-<img src="{{ site.baseurl }}/images/posts/requests/2019_07_07_2.JPG" title="Search bar">
+<img src="{{ site.baseurl }}/images/posts/requests/2019_07_07_2.JPG" title="Search bar" style="max-width: 50%;">
 
 #### What we know
 
 Thanks to my friend, I already know that we can search a product with its SKU number in the search bar and look up to ten at the same time. However, since we want to automate this process for a bigger amount of products, we will analyze what is the behavior when we search for only one.
 
-When we find a product we get an URL with a pattern like https<span></span>://www<span></span>.falabella.com.pe/falabella-pe/product/sku/name/sku and the product with its image and its description in the HTML code. When the product it is not published yet, we get an URL like https<span></span>://www<span></span>.falabella.com.pe/falabella-pe/noSearchResult?Ntt=sku and an HTML with a message that tell us that we got no results for our search.
+When we find a product we get an URL with a pattern like https://www.falabella.com.pe/falabella-pe/product/sku/name/sku and the product with its image and its description in the HTML code. When the product it is not published yet, we get an URL like https://www.falabella.com.pe/falabella-pe/noSearchResult?Ntt=sku and an HTML with a message that tell us that we got no results for our search.
 
 With this information, we already see a pattern of what happen when we search for a product.
 
@@ -55,14 +55,14 @@ Now that we know what happen when we search for a product, we need to know what 
 
 <img src="{{ site.baseurl }}/images/posts/requests/2019_07_07_3.JPG" title="Chrome's developer tools"> 
 
-With this, we see that the search is made by calling the following URL: https<span></span>://www<span></span>.falabella.com.pe/falabella-pe/search/?Ntt=sku
+With this, we see that the search is made by calling the following URL: https://www.falabella.com.pe/falabella-pe/search/?Ntt=sku
 
 
 ### Checking if a product is published
 
 In order to use the search bar and check if a product its published we need to use the URL found previously and see what are the contents of the resulting website.
 
-Yet, since the actual information that we need is also in the url of the result, we will be only using that to see if our product its published or not:   
+Yet, since the actual information that we need is also in the URL of the result, we will be only using that to see if our product its published or not:   
 
 ``` python
 import requests
@@ -83,7 +83,7 @@ for product in products :
 	else:
 	   	print(product,'Published')
 ```
-In this case, since we are only looking for information in the url of the website, we use a HEAD call instead of a GET to reduce the response time of the website.
+In this case, since we are only looking for information in the URL of the website, we use a HEAD call instead of a GET to reduce the response time of the website.
 
 In many cases, you would need to retrieve the whole HTML of the web page with a GET call and then analyze the text to find information:
 
@@ -144,7 +144,9 @@ for product in products :
 The full code used in these examples can be found in the [blog's github](https://github.com/jpereiran/jpereiran-blog/tree/master/code/requests/excel).
 
 ### Conclusion
-Whenever someone wants to work with Excel files in python, most tutorials and websites suggest the use of pandas, opepyxl or xlsxwriter packages. However, it is important to know that there are other options availabe that can help you with more functionalities. Microsoft’s COM technology is an option that can be used effectively through python to do tasks that might be too difficult to do otherwise and not limitting its use to only Excel. Hopefully this example can give you some inspiration on how to incorporate this library into your work.
+Web scraping is used to extract information from the web in an automated way. To do this process, firstly you need to understand and analyze how your website works and what is the process thad happens behind in order to retrive the data from the servers, and then replicate it with code.
+
+In Python, there are multiple ways to do this and the most common is using the library Requests. Hopefully these examples can give show you the basic process that you need to follow to scrape information from different websites and inspire you on doing the same.
 
 ### Next steps
 
