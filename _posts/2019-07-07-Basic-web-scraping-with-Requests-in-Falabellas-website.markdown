@@ -43,11 +43,11 @@ And to be more specific, we will be working with the search bar:
 
 #### What we know
 
-Thanks to my friend, I already know that we can search a product with its SKU number in the search bar and look up to ten at the same time. However, since we want to make this process for a bigger amount of products, we will analyze what is the behavior when we search only one.
+Thanks to my friend, I already know that we can search a product with its SKU number in the search bar and look up to ten at the same time. However, since we want to automate this process for a bigger amount of products, we will analyze what is the behavior when we search for only one.
 
-When we find a product we get an URL with a pattern like https<span></span>://www.falabella.com.pe/falabella-pe/product/sku/name/sku and the resultant product with its image and its description in the resultatn HTML. When the product its not published yet we get an URL like https://www.falabella.com.pe/falabella-pe/noSearchResult?Ntt=sku and an HTML with a message that tell us that we got no result for our search.
+When we find a product we get an URL with a pattern like https<span></span>://www<span></span>.falabella.com.pe/falabella-pe/product/sku/name/sku and the product with its image and its description in the HTML code. When the product it is not published yet, we get an URL like https<span></span>://www<span></span>.falabella.com.pe/falabella-pe/noSearchResult?Ntt=sku and an HTML with a message that tell us that we got no results for our search.
 
-With this information, we already see a pattern of what happen when we look for a product.
+With this information, we already see a pattern of what happen when we search for a product.
 
 #### What we need to know
 
@@ -55,7 +55,7 @@ Now that we know what happen when we search for a product, we need to know what 
 
 <img src="{{ site.baseurl }}/images/posts/requests/2019_07_07_3.JPG" title="Chrome's developer tools"> 
 
-With this, we see that the search is made by calling the following URL: https://www.falabella.com.pe/falabella-pe/search/?Ntt=sku
+With this, we see that the search is made by calling the following URL: https<span></span>://www<span></span>.falabella.com.pe/falabella-pe/search/?Ntt=sku
 
 
 ### Checking if a product is published
