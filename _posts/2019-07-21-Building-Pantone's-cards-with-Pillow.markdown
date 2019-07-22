@@ -123,7 +123,7 @@ Getting a card with the code, name and color like this one:
 
 <img src="{{ site.baseurl }}/images/posts/pillow/2019_07_21_1.jpg" title="Pantone Card">
 
-### Doing it for all images
+### Doing it for all colors
 
 Also, we can repeat the same process to get a card for every color in our .json file:
 
