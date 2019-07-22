@@ -4,7 +4,7 @@ date:   2019-07-21 19:45:48
 categories: articles
 abstract: Have you ever seen those cards with color guides and names on it? Well, they are called Pantone color cards and today we will use Pillow to build them out of [...]
 ---
-First of all, I'm sorry for not posting anything last week. The cause of it was that I went to one of the most "interesting" hackathon's that I ever been, but that is a story for another day.
+First of all, I didn't post anything last week. The cause of it was that I went to one of the most "interesting" hackathon's that I ever been, but that is a story for another day.
 
 So, returning with the usual posts, have you ever seen those cards with color guides and names on it? Well, they are called Pantone color cards and are used as a standardized color matching system, and today we will use Pillow in order to create them out of their HEX values.
 
