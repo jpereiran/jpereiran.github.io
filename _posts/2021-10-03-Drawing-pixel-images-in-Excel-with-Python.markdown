@@ -31,7 +31,7 @@ Also, we will need an image to work with, so get any image you want!
 
 Since we are drawing our image in an Excel worksheet (our canvas), we will need to measure the size of it to make the correct calculations to show the final of our image. 
 
-<img src="{{ site.baseurl }}/images/posts/pillow/2019_07_21_1.jpg" title="Excel Canvas">
+<img src="{{ site.baseurl }}/images/posts/pillow/2021_10_03_1.jpg" title="Excel Canvas">
 
 In my case, my screen resolution is 1080 x 1920 pixels, and the workable area of an Excel worksheet is 695 x 1855 pixels, so I'm gonna use those dimesions for the calculations of my drawings.
 
@@ -125,8 +125,6 @@ In order to avoid that, now we are going to create a function that would do some
 
 ``` 
 Getting a folder with all of our cards:
-
-<img src="{{ site.baseurl }}/images/posts/pillow/2019_07_21_2.JPG" title="Folder with cards">
 
 The full code used in these examples can be found in the [blog's github](https://github.com/jpereiran/jpereiran-blog/tree/master/code/pillow/pantone).
 
