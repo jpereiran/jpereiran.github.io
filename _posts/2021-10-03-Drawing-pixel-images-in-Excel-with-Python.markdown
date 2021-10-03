@@ -14,12 +14,12 @@ Pixel art is a form of digital art, created mostly through the use of software, 
 
 The aesthetic for this kind of graphics comes from 8-bit and 16-bit computers and old video game consoles, limitating the color palette in smaller sizes.
 
-![Example of Pixel Art](https://en.wikipedia.org/wiki/Pixel_art#/media/File:2xsai_example.png)
+![Example of Pixel Art](https://upload.wikimedia.org/wikipedia/commons/e/e9/2xsai_example.png)
 
 
 ### Getting started
 
-First, be sure that you have Pillow and >lsxwriter (v. 1.3.9 or superior) installed in your computer. If not, you can easilly install it using pip:
+First, be sure that you have Pillow and Xlsxwriter (v. 1.3.9 or superior) installed in your computer. If not, you can easilly install them using pip:
 
 ```python
 pip install Pillow
@@ -31,7 +31,7 @@ Also, we will need an image to work with, so get any image you want!
 
 Since we are drawing our image in an Excel worksheet (our canvas), we will need to measure the size of it to make the correct calculations to show the final of our image. 
 
-<img src="{{ site.baseurl }}/images/posts/pillow/2021_10_03_1.jpg" title="Excel Canvas">
+<img src="{{ site.baseurl }}/images/posts/pillow/2021_10_03_1.JPG" title="Excel Canvas">
 
 In my case, my screen resolution is 1080 x 1920 pixels, and the workable area of an Excel worksheet is 695 x 1855 pixels, so I'm gonna use those dimesions for the calculations of my drawings.
 
@@ -42,7 +42,7 @@ Also, the minimun size of a cell in Excel can only be 1 x 1 pixels, so that is g
 
 The fist step is to read our image and do three kind of transformations wiht Pillow. I will be working with this image:
 
-<img src="{{ site.baseurl }}/images/posts/pillow/2021_10_03_2.jpg" title="Kirby">
+<img src="{{ site.baseurl }}/images/posts/pillow/2021_10_03_2.png" title="Kirby">
 
 The first one is using the **quantize** method, reducing the number of colors of our image to get a better pixel like style. The second one is using the **convert** method, getting an RGB image the would be used lately. And the third one is using the **resize** method, changing the size of our image to fill the size of our canvas and merging some pixels in the process.
 
@@ -66,7 +66,7 @@ final_image=small_img.resize((500,500),Image.NEAREST)
 final_image.save('kirby_pixel.png')
 ```
 
-Getting an image like this one: <img src="{{ site.baseurl }}/images/posts/pillow/2021_10_03_3.jpg" title="Excel file">
+Getting an image like this one: <img src="{{ site.baseurl }}/images/posts/pillow/2021_10_03_3.png" title="Kirby Pixel Art">
 
 ### Drawing our image into an Excel sheet
 
@@ -113,7 +113,7 @@ workbook.close()
 ```
 Getting a file like this one:
 
-<img src="{{ site.baseurl }}/images/posts/pillow/2021_10_03_4.jpg" title="Excel file">
+<img src="{{ site.baseurl }}/images/posts/pillow/2021_10_03_4.png" title="Excel file">
 
 ### Creating a function that do all together
 
