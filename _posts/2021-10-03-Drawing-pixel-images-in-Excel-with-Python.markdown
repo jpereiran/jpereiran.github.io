@@ -66,7 +66,9 @@ final_image=small_img.resize((500,500),Image.NEAREST)
 final_image.save('kirby_pixel.png')
 ```
 
-Getting an image like this one: <img src="{{ site.baseurl }}/images/posts/pillow/2021_10_03_3.png" title="Kirby Pixel Art">
+Getting an image like this one: 
+
+<img src="{{ site.baseurl }}/images/posts/pillow/2021_10_03_3.png" title="Kirby Pixel Art">
 
 ### Drawing our image into an Excel sheet
 
