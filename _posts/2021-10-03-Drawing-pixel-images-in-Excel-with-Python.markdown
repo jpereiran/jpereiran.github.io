@@ -119,19 +119,108 @@ Getting a file like this one:
 
 ### Creating a function that do all together
 
-Since in the last result, our initial image have a fixed dimesion of a square, do you wonder what would happen if we have an original file with different proportions or if we change the dimesions? Our results would not look as good as we want to
+Since in the last result, our initial image had the same proportions of a square, so we worked with that in mind. However, do you wonder what would happen if we had an original file with different proportions or if we changed the dimensions? Our results would not look as good as we want to.
 
-In order to avoid that, now we are going to create a function that would do some tweaks with the original image size to always get a nice result:
+In order to avoid that, now we are going to create a function that would do some tweaks with the original image size to always get a nice result, using the number of colors and number of pixels that we want in our result, and the size of our canvas and the path of our image as inputs:
 
 ``` python
+from PIL import Image
+import xlsxwriter
+
+def image_to_pixel_art(image_path, number_of_colors, number_of_pixels, canvas_max_size):
+
+	#Reducing the canvas max size due to some bugs with the xlswriter functions and to keep our image in frame
+	canvas_max_size = canvas_max_size - 100
+
+	#Check to a maximun number of pixels to avoid crashing excel (you can increase this number)
+	if number_of_pixels > 256:
+		print('The max number of pixels is 256')
+		return
+
+	#Find the maximun cell size to be used
+	cell_size = (round(canvas_max_size / number_of_pixels))
+
+	#Since the minimun size for a Excel cell is 1px, we round our size to 1 and get the proportion of the rounding
+	if cell_size == 0:
+		cell_size = 1
+	elif cell_size < 1:
+		cell_size = 1
+	print('Cell size:',cell_size)
+
+	#We get the size of the input image
+	img=Image.open(image_path)
+	width, height  = img.size
+
+	#Now we resize the width and heigth with our number of pixels to keep the proportion
+	if height > width:
+		height_f = number_of_pixels
+		img_proportion = number_of_pixels/height
+		width_f = int(round(width * img_proportion)) 
+		print('h,w,prop:',height_f, width_f,img_proportion)
+	elif height < width:
+		width_f = number_of_pixels
+		img_proportion = number_of_pixels/width
+		height_f = int(round(height * img_proportion)) 
+		print('h,w,prop:',height_f, width_f,img_proportion)
+	elif height == width:
+		height_f = number_of_pixels
+		width_f = number_of_pixels
+		print('h,w,prop:',height_f, width_f,img_proportion)
+
+	#Image transformation
+	pixel_image = img.quantize(number_of_colors)
+	rgb_im = pixel_image.convert('RGB')
+	small_img=rgb_im.resize((width_f,height_f),Image.BILINEAR)
+
+	final_image=small_img.resize((width,height),Image.NEAREST)
+	final_image.save(image_path.split('.')[0] + '_pixel_' + str(number_of_pixels) + '.' + image_path.split('.')[1]) 
+
+	#Create our .xls file with two sheets 
+	workbook = xlsxwriter.Workbook(image_path.split('.')[0] + '_pixel_'+ str(number_of_pixels) +'.xlsx')
+	worksheet = workbook.add_worksheet('Image')
+	worksheet_2 = workbook.add_worksheet('Color Map')
+
+	#Changing the size of our columns 
+	worksheet.set_column_pixels(0, width_f, cell_size)
+
+	#Getting the pixel RGB values (colors) of our image
+	pixel_values = list(small_img.getdata())
+
+	#Iterating through the size of our image to draw it
+	for x in range(height_f):
+		#Changing the size of our rows
+		worksheet.set_row_pixels(x, cell_size)
+		for i in range(width_f):
+			#Using a mask to get the HEX value of our RGB since thats the one that Excel uses
+			color = '#%02x%02x%02x' % pixel_values[width_f*x+i]
+			#Filling the background of our cell
+			cell_format = workbook.add_format({'bold':True, 'align':'center', 'bg_color':color})
+			#Draw our image in the first sheet
+			worksheet.write(x, i, '', cell_format)
+			#Save the HEX values in the second sheet
+			worksheet_2.write(x, i, str(color))
+	workbook.close()
+
+
+#Testing our function
+
+image_to_pixel_art('damngina.jpg',6,8,695)
+image_to_pixel_art('damngina.jpg',12,8,695)
+image_to_pixel_art('damngina.jpg',16,8,695)
+image_to_pixel_art('damngina.jpg',6,16,695)
+image_to_pixel_art('damngina.jpg',12,16,695)
+image_to_pixel_art('damngina.jpg',16,16,695)
+image_to_pixel_art('damngina.jpg',6,32,695)
+image_to_pixel_art('damngina.jpg',12,32,695)
+image_to_pixel_art('damngina.jpg',16,32,695)
 
 ``` 
-Getting a folder with all of our cards:
+Getting all our transformations:
 
-The full code used in these examples can be found in the [blog's github](https://github.com/jpereiran/jpereiran-blog/tree/master/code/pillow/pantone).
+<img src="{{ site.baseurl }}/images/posts/pillow/2021_10_03_5.png" title="Excel file">
+
+The full code used in the last function can be found in the [blog's github](https://github.com/jpereiran/jpereiran-blog/tree/master/code/pillow/pixel-art).
 
 ### Conclusion
 
-Pillow can not only be used to work and to edit existing images, it can also be used to draw and create new images. 
-
-Hopefully this simple example can show you the basics of how to use this library to create images and texts and then merge them to achieve more complex results.
+Hopefully this simple example can give you some ideas on how to work with an image, doing different transformations and saving it to other formats. Furthermore, you can use this functions to achieve other results such as blurry an image (or maybe only some pixels of it) or even create a simple cryptography method to share information.
