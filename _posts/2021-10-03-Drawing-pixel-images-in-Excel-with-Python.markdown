@@ -217,7 +217,7 @@ image_to_pixel_art('damngina.jpg',16,32,695)
 ``` 
 Getting all our transformations:
 
-<img src="{{ site.baseurl }}/images/posts/pillow/2021_10_03_5.png" title="Excel file">
+<img src="{{ site.baseurl }}/images/posts/pillow/2021_10_03_5.jpg" title="Final Results">
 
 The full code used in the last function can be found in the [blog's github](https://github.com/jpereiran/jpereiran-blog/tree/master/code/pillow/pixel-art).
 
