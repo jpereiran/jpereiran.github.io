@@ -1,10 +1,10 @@
-
 ---
 title:  "¿Son confiables los comentarios en los sitios web? Caso Falabella"
 date:   2022-04-18 21:45:16
 categories: articles
 abstract: Al momento de comprar algo por internet, ¿sueles revisar los comentarios dejados por otras personas?. Entonces deberías de saber que estos no siempre son confiables [...]
 ---
+
 
 Aprovechando que durante estos días es el Cyber Wow en Perú, evento en donde diversas marcas tienen descuentos especiales al comprar sus productos por internet,
 buscaremos entender que tan útiles (o incluso confiables) son los comentarios que dejan otros usuarios como reseñas de sus compras.
