@@ -2,7 +2,7 @@
 ---
 title:  "¿Son confiables los comentarios en los sitios web? Caso Falabella"
 date:   2022-04-18 21:45:16
-categories: articles, analysis
+categories: articles
 abstract: Al momento de comprar algo por internet, ¿sueles revisar los comentarios dejados por otras personas?. Entonces deberías de saber que estos no siempre son confiables [...]
 ---
 
