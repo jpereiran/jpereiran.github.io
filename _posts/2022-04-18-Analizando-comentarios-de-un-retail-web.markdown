@@ -5,23 +5,17 @@ categories: articles
 abstract: Al momento de comprar algo por internet, ¿sueles revisar los comentarios dejados por otras personas?. Entonces deberías de saber que estos no siempre son confiables [...]
 ---
 
+Aprovechando que durante estos días es el Cyber Wow en Perú, evento en donde diversas marcas tienen descuentos especiales al comprar sus productos por internet, buscaremos entender que tan útiles (o incluso confiables) son los comentarios que dejan otros usuarios como reseñas de sus compras.
 
-Aprovechando que durante estos días es el Cyber Wow en Perú, evento en donde diversas marcas tienen descuentos especiales al comprar sus productos por internet,
-buscaremos entender que tan útiles (o incluso confiables) son los comentarios que dejan otros usuarios como reseñas de sus compras.
+Para esto, mediante el uso del **web scraping**, tecnica que ya les enseñe a grandes rasgos en un post anterior, he descargado los comentarios de los productos dejados por los usuarios en la web de [Falabella](https://www.falabella.com.pe/falabella-pe/), los cuales usaremos para analizar que tan fiables son ellos y si existen algunos casos particulares que nos llamen la atención.
 
-Para esto, mediante el uso del **web scraping**, tecnica que ya les enseñe a grandes rasgos en un post anterior,
-he descargado los comentarios de los productos dejados por los usuarios en la web de [Falabella](https://www.falabella.com.pe/falabella-pe/), 
-los cuales usaremos para analizar que tan fiables son ellos y si existen algunos casos particulares que nos llamen la atención.
-
-Asimismo, esta vez el post será en español ya que el tema a tratar va mas orientado a las personas de Perú. (but if someone needs it to be transalated just let me know)
+Asimismo, esta vez el post será en español ya que el tema a tratar va mas orientado a las personas de Perú. (but if someone needs it to be translated just let me know)
 
 ### Introducción
 
-Para poder realizar el análisis, procedí a extraer los comentarios de cada producto de la web con el uso de un script de Python, en el cual mediante el uso de las librerias
-**Pandas** y **BeautifulSoup** recorrí cada una de las categorías listadas en su barra de busqueda e ingrese a cada uno de los productos listados para obtener sus datos.
+Para poder realizar el análisis, procedí a extraer los comentarios de cada producto de la web con el uso de un script de Python, en el cual mediante el uso de las librerias **Pandas** y **BeautifulSoup** recorrí cada una de las categorías listadas en su barra de busqueda e ingrese a cada uno de los productos listados para obtener sus datos.
 
-Mediante este paso inicial, obtuvimos una lista de 220759 comentarios, los cuales luego de una limpieza rápida de eliminación típica de 
-casos comunes como comentarios con ID repetido o comentarios en blanco, se redujeron a 60227, los cuales cuentan con los siguientes atributos:
+Mediante este paso inicial, obtuvimos una lista de 220759 comentarios, los cuales luego de una limpieza rápida de eliminación típica de casos comunes como comentarios con ID repetido o comentarios en blanco, se redujeron a 60227, los cuales cuentan con los siguientes atributos:
 
 <img src="{{ site.baseurl }}/images/posts/requests/2022_04_18_1.PNG" title="Muestra del dataset de comentarios extraidos"> 
 
@@ -40,26 +34,34 @@ Los primeras relaciones que analizaremos son las de cantidad de comentarios por 
 <img src="{{ site.baseurl }}/images/posts/requests/2022_04_18_2.PNG" title="Muestra de las 3 relaciones mencionadas"> 
 
 En estas relaciones ya podemos ver ciertas cosas intersantes:
--Vemos que hay varios usuarios con muchos comentarios.
--Vemos que hay ciertos productos que cuentan con muchos comentarios.
--Vemos que hay varias marcas que tienen más comentarios que el resto.
+1. Hay varios usuarios con muchos comentarios.
+2. Hay ciertos productos que cuentan con muchos comentarios.
+3. Hay varias marcas que tienen más comentarios que el resto.
 
-#### What we know
+A continuación, ahondaremos más en cada una de estas tres relaciones para ver que cosas interesantes encontramos.
 
-Thanks to my friend, I already know that we can search a product with its SKU number in the search bar and look up to ten at the same time. However, since we want to automate this process for a bigger amount of products, we will analyze what is the behavior when we search for only one.
+#### Comentarios x Usuario
 
-When we find a product we get an URL with a pattern like https://www.falabella.com.pe/falabella-pe/product/sku/name/sku and the product with its image and its description in the HTML code. When the product it is not published yet, we get an URL like https://www.falabella.com.pe/falabella-pe/noSearchResult?Ntt=sku and an HTML with a message that tell us that we got no results for our search.
+Para este caso, agregaremos la marca para ver si existe algo particular en los usuarios que tienen mas comentarios, y procederemos a revisar el caso del usuario Jorge.
 
-With this information, we already see a pattern of what happen when we search for a product.
+<img src="{{ site.baseurl }}/images/posts/requests/2022_04_18_3.PNG" title="Comenarios x Usuario con su Marca"> 
 
-#### What we need to know
+Al inicio uno podría pensar que Jorge es un usuario asiduo de estas marcas de productos de cuidado personal. Sin embargo, al entrar al detalle de los comentarios ingresados encontramos lo siguiente:
 
-Now that we know what happen when we search for a product, we need to know what its the process behind this search. In order to do that, we will use the developer tools of Chrome and see what are the requests made to the website in the Network tag [(More details here)](https://developers.google.com/web/tools/chrome-devtools/network/).
+<img src="{{ site.baseurl }}/images/posts/requests/2022_04_18_4.PNG" title="Detalle de los comenarios del usuario Jorge">
 
-<img src="{{ site.baseurl }}/images/posts/requests/2019_07_07_3.JPG" title="Chrome's developer tools"> 
+En este detalle podemos observar que todos los comentarios de Jorge fueron ingresados el mismo día y solo con un par de horas de diferencias, lo cual nos hace sospechar que se trata de algun usuario propio de estas marcas, ya que incluso todos estos tienen una calificación de 5 sobre 5. También, al sumar los montos de los productos vemos su compra fue de S/. 3,264 , lo cual es bastante elevado e incluso algunos de sus productos cumplen la misma función.
 
-With this, we see that the search is made by calling the following URL: https://www.falabella.com.pe/falabella-pe/search/?Ntt=sku
+Asimismo, al buscar un poco la relación de ambas marcas, encontramos que ambas pertenencen a la misma compañia, lo cual aumenta nuestras sospechas sobre la veracidad de estos comentarios, y al ver los comentarios del usuario Marion que también compro productos de la misma marca, encontramos que aplica a los mismo productos que a Jorge y con el mismo comportamiento.
 
+<img src="{{ site.baseurl }}/images/posts/requests/2022_04_18_5.PNG" title="Detalle de los comenarios del usuario Marion">
+
+De forma contraria, al revisar los comentarios de los otros usuarios con varios comentarios (Flor, Teresa y Vicky), no encontramos estos comportamientos sospechosos por lo que no entraremos en más detalles. 
+
+#### Comentarios x Producto
+
+
+#### Comentarios x Marca
 
 
 
