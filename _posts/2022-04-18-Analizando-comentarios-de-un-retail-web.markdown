@@ -39,7 +39,10 @@ Los primeras relaciones que analizaremos son las de cantidad de comentarios por 
 
 <img src="{{ site.baseurl }}/images/posts/requests/2022_04_18_2.PNG" title="Muestra de las 3 relaciones mencionadas"> 
 
-
+En estas relaciones ya podemos ver ciertas cosas intersantes:
+-Vemos que hay varios usuarios con muchos comentarios.
+-Vemos que hay ciertos productos que cuentan con muchos comentarios.
+-Vemos que hay varias marcas que tienen más comentarios que el resto.
 
 #### What we know
 
