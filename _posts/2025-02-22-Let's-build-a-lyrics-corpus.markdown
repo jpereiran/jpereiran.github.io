@@ -105,6 +105,10 @@ def get_tracks_from_release(release_id):
     return tracks
 ```
 
+### Retrieving the lyrics
+
+Now that we have all the tracks from an artist, we can use the Lyrics.ovh API to get the lyrics. For more information, you can go to its official page [here](https://lyricsovh.docs.apiary.io/#) 
+
 #### Get lyrics for a track
 
 ```python
